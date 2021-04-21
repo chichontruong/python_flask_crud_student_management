@@ -1,5 +1,5 @@
 ==============
-flask-crud-app
+python_flask_crud_student_management
 ==============
 
 Building a CRUD application with Flask and SQLAlchemy
@@ -12,12 +12,9 @@ Please execute the following commands:
 
 ::
 
-    $ sudo apt-get install git python3-virtualenv python3-pip sqlitebrowser
-    $ git clone https://github.com/macagua/flask-crud-app.git
+    $ git clone https://github.com/chichontruong/python_flask_crud_student_management.git
     $ cd ./flask-crud-app
-    $ virtualenv --python=/usr/bin/python3 venv
-    $ source ./venv/bin/activate
-    $ pip3 install -r requirements.txt
+    $ pip install -r requirements.txt
 
 
 Running
@@ -27,13 +24,13 @@ Please execute the following command:
 
 ::
 
-    $ python3 bookmanager.py
+    $ python app.py
      * Serving Flask app "bookmanager" (lazy loading)
      * Environment: production
        WARNING: Do not use the development server in a production environment.
        Use a production WSGI server instead.
      * Debug mode: on
-     * Running on http://0.0.0.0:8087/ (Press CTRL+C to quit)
+     * Running on http://127.0.0.1:8087/ (Press CTRL+C to quit)
      * Restarting with stat
      * Debugger is active!
      * Debugger PIN: 245-060-649
@@ -43,43 +40,37 @@ Please execute the following command:
 
 Open at your Web browser the following link http://127.0.0.1:8087
 
-
-.. image:: https://raw.githubusercontent.com/macagua/flask-crud-app/master/docs/_static/bookmanager.png
-   :class: image-inline
-
-
 SQLAlchemy to SQL
 =================
 
-
 **db.session.commit()**::
 
-    INSERT INTO book (title) VALUES ('The Hobbie');
-    INSERT INTO book (title) VALUES ('The Lord of Rings');
-    INSERT INTO book (title) VALUES ('The Silmarillion');
-    INSERT INTO book (title) VALUES ('The Children of Húrin');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025001', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025002', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025003', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025004', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
     COMMIT;
 
-    UPDATE book
-    SET title='The Lord of the Rings'
-    WHERE title = 'The Lord of Rings';
+    UPDATE student
+    SET name='Trương Chí Chọn 1'
+    WHERE id = 1;
     COMMIT;
 
 **Book.query.all()**::
 
-    SELECT * FROM book;
+    SELECT * FROM student;
 
-**Book.query.filter_by(title=oldtitle).first()**::
+**Book.query.filter_by(id=id).first()**::
 
-    SELECT book.title
-    FROM book
-    WHERE book.title = 'The Hobbie'
+    SELECT student.name
+    FROM student
+    WHERE student.id = 1
     LIMIT 1 OFFSET 0;
 
 **db.session.delete(book)**::
 
-    DELETE FROM book
-    WHERE book.title = 'The Children of Húrin';
+    DELETE FROM student
+    WHERE student.id = 1;
 
 
 Reference
@@ -90,4 +81,3 @@ Reference
 - https://docs.sqlalchemy.org/en/latest/orm/tutorial.html
 
 - http://flask-sqlalchemy.pocoo.org/2.3/queries/
-
