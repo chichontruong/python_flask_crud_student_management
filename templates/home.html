@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <title>Python project example</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form method="POST" action="/">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4>Register student</h4>
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="text" name="title">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Name</span>
+                            <input class="form-control" type="text" name="name">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Registration Number</span>
+                            <input class="form-control" type="text" name="registration_number">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Email</span>
+                            <input class="form-control" type="email" name="email">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Date Of Birth</span>
+                            <input class="form-control" type="date" name="date_of_birth">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Hometown</span>
+                            <input class="form-control" type="text" name="hometown">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <span class="label">Score</span>
+                            <input class="form-control" type="number" name="score">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Add New</button>
+                </div>
+            </div>
+            <br/>
+        </form>
+
+        <h1>Student List</h1>
+        <table class="table">
+            {% for item in students %}
+            <tr>
+                <td>
+                    {{item.id}}
+                </td>
+                <form method="POST" action="./update" style="display: inline">
+                    <td>
+                        <input type="hidden" value="{{item.id}}" name="id">
+                        <input class="form-control" type="text" value="{{item.registration_number}}" name="registration_number">
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" value="{{item.name}}" name="name">
+                    </td>
+                    <td>
+                        <input class="form-control" type="email" value="{{item.email}}" name="email">
+                    </td>
+                    <td>
+                        <input class="form-control" type="date" value="{{item.date_of_birth}}" name="date_of_birth">
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" value="{{item.hometown}}" name="hometown">
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" value="{{item.score}}" name="score">
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-warning btn-sm" type="submit">Update</button>
+                    </td>
+                </form>
+                <td>
+                    <form method="POST" action="./delete" style="display: inline">
+                        <input type="hidden" value="{{item.id}}" name="id">
+                        <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+
+</html>
