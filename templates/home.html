@@ -3,6 +3,8 @@
 <head>
     <title>Python project example</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
 <body>
@@ -10,10 +12,9 @@
         <form method="POST" action="/">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h4>Register student</h4>
+                    <h2>Register student</h2>
                 </div>
                 <div class="card-body">
-                    <input class="form-control" type="text" name="title">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             <span class="label">Name</span>
@@ -46,18 +47,29 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Add New</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i> Add New</button>
                 </div>
             </div>
             <br/>
         </form>
 
         <h1>Student List</h1>
-        <table class="table">
+        <table class="table table-hover">
+            <tr>
+                <th class="text-success">ID</th>
+                <th class="text-success">Registration Number</th>
+                <th class="text-success">Name</th>
+                <th class="text-success">Email</th>
+                <th class="text-success">Date Of Birth</th>
+                <th class="text-success">Hometown</th>
+                <th class="text-success">Score</th>
+                <th></th>
+                <th></th>
+            </tr>
             {% for item in students %}
             <tr>
                 <td>
-                    {{item.id}}
+                    <span class="badge badge-secondary">{{item.id}}</span>
                 </td>
                 <form method="POST" action="./update" style="display: inline">
                     <td>
@@ -79,14 +91,14 @@
                     <td>
                         <input class="form-control" type="number" value="{{item.score}}" name="score">
                     </td>
-                    <td>
-                        <button class="btn btn-outline-warning btn-sm" type="submit">Update</button>
+                    <td class="td-action">
+                        <button class="btn btn-outline-warning btn-sm" type="submit"><i class="fas fa-pencil-alt"></i> Update</button>
                     </td>
                 </form>
-                <td>
+                <td class="td-action">
                     <form method="POST" action="./delete" style="display: inline">
                         <input type="hidden" value="{{item.id}}" name="id">
-                        <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                        <button class="btn btn-outline-danger btn-sm" type="submit"><i class="fas fa-trash-alt"></i> Delete</button>
                     </form>
                 </td>
             </tr>
@@ -94,6 +106,7 @@
         </table>
     </div>
 </body>
+<script src="{{url_for('static',filename='js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 
 </html>

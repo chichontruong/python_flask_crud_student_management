@@ -28,19 +28,21 @@ class Student(db.Model):
     def __repr__(self):
         return "[id: {}, registration_number: {}, name: {}, email: {}, date_of_birth: {}, hometown: {}, score: {} ]".format(self.id, self.registration_number, self.name, self.email, self.date_of_birth, self.hometown, self.score)
 
-
 @app.route("/", methods=["GET", "POST"])
 def home():
     students = None
     if request.form:
         try:
+            score = request.form.get("score")
+            if score == '' :
+                score = 0
             student = Student(
                 registration_number=request.form.get("registration_number"), 
                 name=request.form.get("name"),
                 email=request.form.get("email"),
                 date_of_birth=request.form.get("date_of_birth"),
                 hometown=request.form.get("hometown"),
-                score=request.form.get("score")
+                score= score
             )
             db.session.add(student)
             db.session.commit()
