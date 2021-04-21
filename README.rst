@@ -25,7 +25,7 @@ Please execute the following command:
 ::
 
     $ python app.py
-     * Serving Flask app "bookmanager" (lazy loading)
+     * Serving Flask app "app" (lazy loading)
      * Environment: production
        WARNING: Do not use the development server in a production environment.
        Use a production WSGI server instead.
@@ -46,9 +46,9 @@ SQLAlchemy to SQL
 **db.session.commit()**::
 
     INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025001', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
-    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025002', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
-    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025003', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
-    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025004', 'Trương Chí Chọn', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025002', 'Trương Chí Chọn 1', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025003', 'Trương Chí Chọn 2', 'chontc91@gmail.com', 'Kiên Giang', '10');
+    INSERT INTO student (registration_number, name, email, date_of_birth, hometown, score) VALUES ('HTTT2025004', 'Trương Chí Chọn 3', 'chontc91@gmail.com', 'Kiên Giang', '10');
     COMMIT;
 
     UPDATE student
@@ -56,18 +56,18 @@ SQLAlchemy to SQL
     WHERE id = 1;
     COMMIT;
 
-**Book.query.all()**::
+**Student.query.all()**::
 
     SELECT * FROM student;
 
-**Book.query.filter_by(id=id).first()**::
+**Student.query.filter_by(id=id).first()**::
 
     SELECT student.name
     FROM student
     WHERE student.id = 1
     LIMIT 1 OFFSET 0;
 
-**db.session.delete(book)**::
+**db.session.delete(student)**::
 
     DELETE FROM student
     WHERE student.id = 1;
